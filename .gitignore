@@ -1,1 +1,5 @@
 /target
+
+# C++ port (CMake out-of-source build directories)
+/cpp/build/
+/cpp/tests/build/

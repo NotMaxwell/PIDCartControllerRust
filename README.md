@@ -63,6 +63,20 @@ hardware" below):
   in the handout), and the PID controller itself. Unit tested on the host.
 - `src/main.rs` -- the Embassy firmware: ADC read, ultrasonic ping/echo
   timing, PID loop, PWM servo output.
+- `cpp/` -- a C++ port of the same firmware for comparison (see below).
+
+## C++ port
+
+[`cpp/`](cpp/) holds a line-for-line C++ port of this firmware built against
+the [Raspberry Pi Pico SDK](https://github.com/raspberrypi/pico-sdk): same
+board, same wiring, same control math, written in the SDK's own idiom. It
+carries the same unit tests over the same conversions and PID update.
+
+[`cpp/README.md`](cpp/README.md) has build/test instructions and a rundown of
+where the two implementations diverge -- `await` versus busy-wait, 64-bit
+`Instant` versus wrapping `time_us_32()`, moved peripheral tokens versus bare
+pin numbers, `defmt`-over-RTT versus `printf`-over-USB, and cargo versus
+CMake-plus-an-external-SDK.
 
 ## Building and flashing
 
